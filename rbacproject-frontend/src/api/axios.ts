@@ -1,12 +1,10 @@
 import type { AxiosError, AxiosResponse } from "axios";
 import axios from "axios";
 
-// ✅ Create API instance
 const api = axios.create({
   baseURL: "http://localhost:8080",
 });
 
-// ✅ Request interceptor (add token)
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem("token");
   if (token && config.headers) {
@@ -31,7 +29,6 @@ export type ErrorResponse = {
 };
 
 
-// ✅ REGISTER
 export const register = async (
   userData: AuthRequest
 ): Promise<AxiosResponse<AuthResponse>> => {
@@ -43,7 +40,6 @@ export const register = async (
 };
 
 
-// ✅ LOGIN
 export const login = async (
   user: AuthRequest
 ): Promise<AxiosResponse<AuthResponse | ErrorResponse>> => {
@@ -53,7 +49,7 @@ export const login = async (
     const err = error as AxiosError<ErrorResponse>;
 
     if (err.response) {
-      return err.response; // ✅ return backend error
+      return err.response; 
     }
 
     throw error;
@@ -61,7 +57,6 @@ export const login = async (
 };
 
 
-// ✅ GET USERS
 export const getUsers = async (): Promise<any> => {
   try {
     const response = await api.get("/api/auth/allUsers");
@@ -72,7 +67,6 @@ export const getUsers = async (): Promise<any> => {
 };
 
 
-// ✅ GET ADMINS
 export const getAdmins = async (): Promise<any> => {
   try {
     const response = await api.get("/api/auth/allUsers?role=ADMIN");
