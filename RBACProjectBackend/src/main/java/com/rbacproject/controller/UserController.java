@@ -2,6 +2,7 @@ package com.rbacproject.controller;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,7 +13,7 @@ import com.rbacproject.service.UserService;
 
 @RestController
 @RequestMapping("/api/auth")
-//@CrossOrigin("http://localhost:5731")
+@CrossOrigin("http://localhost:5173/")
 public class UserController {
 	
 	private final UserService us;
